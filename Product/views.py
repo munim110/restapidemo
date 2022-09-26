@@ -12,7 +12,7 @@ class addProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     filter_backends = [filters.SearchFilter]
-    search_fields = ['name', 'price', 'id']
+    search_fields = ['name', 'price']
 
     def post(self, request):
         serializer = ProductSerializer(data=request.data)
