@@ -1,3 +1,4 @@
+from urllib import request
 from rest_framework import serializers
 from .models import *
 
@@ -16,3 +17,11 @@ class ProductSerializer(serializers.ModelSerializer):
         )
         product.save()
         return product
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.price = validated_data.get('price', instance.price)
+        instance.stock = validated_data.get('stock', instance.stock)
+        instance.image_url = validated_data.get('image_url', instance.image_url)
+        instance.save()
+        return instance
