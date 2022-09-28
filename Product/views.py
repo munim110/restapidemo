@@ -21,10 +21,11 @@ class addProductViewSet(viewsets.ModelViewSet):
             return Response({'result': 'success'})
         return Response({'result': 'failure'})
     
-    def delete(self, request):
+    def delete(self, request, pk):
         serializer = ProductSerializer(data=request.data)
+        instance = Product.objects.get(pk=pk)
         if serializer.is_valid():
-            serializer.delete()
+            serializer.delete(instance)
             return Response({'result': 'success'})
         return Response({'result': 'failure'})
 
